@@ -30,6 +30,7 @@ workbook.xlsx.readFile(excelFilePath)
       };
 
       sheetData.push(sheetJSON);
+      console.log(sheetRows)
 
     });
     const json = { satuan: [], barang: [], varian: [] }
@@ -48,6 +49,30 @@ workbook.xlsx.readFile(excelFilePath)
               nama_satuan: e[indexNamaSatuan]
             })
           })
+        }
+
+        if (sheetJSON.sheetName == 'Jenis Barang') {
+          const dataJenisBarang = sheetJSON.data;
+          const headerJenisBarang = dataJenisBarang[0]
+          const bodyJenisBarang = dataJenisBarang.slice(1)
+          const indexNamaJenisBarang = headerJenisBarang.findIndex(e => e === '*Nama Jenis Barang')
+          const indexKodeJenisBarang = headerJenisBarang.findIndex(e => e === '*Kode Jenis Barang')
+          const indexTampilkanJenisBarang = headerJenisBarang.findIndex(e => e === '*Tampilkan di POS (Ya/Tidak)')
+
+          bodyJenisBarang.forEach((e) => {
+            json.satuan.push({
+              nama: e[indexNamaJenisBarang],
+              kode: e[indexKodeJenisBarang],
+              is_pos: e[indexTampilkanJenisBarang] == 'Ya' ? true : false
+            })
+          })
+
+        }
+        if (sheetJSON.sheetName == 'Varian & SKU') {
+
+        }
+        if (sheetJSON.sheetName == 'Data Barang') {
+
         }
       }
     });
