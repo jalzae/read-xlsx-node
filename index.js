@@ -33,7 +33,7 @@ workbook.xlsx.readFile(excelFilePath)
       console.log(sheetRows)
 
     });
-    const json = { satuan: [], barang: [], varian: [] }
+    const json = { satuan: [], jenis_barang: [], barang: [], varian: [] }
     sheetData.forEach((sheetJSON, index) => {
       if (index > 0) {
         // console.log(`Saved ${sheetJSON.sheetName}`);
@@ -60,7 +60,7 @@ workbook.xlsx.readFile(excelFilePath)
           const indexTampilkanJenisBarang = headerJenisBarang.findIndex(e => e === '*Tampilkan di POS (Ya/Tidak)')
 
           bodyJenisBarang.forEach((e) => {
-            json.satuan.push({
+            json.jenis_barang.push({
               nama: e[indexNamaJenisBarang],
               kode: e[indexKodeJenisBarang],
               is_pos: e[indexTampilkanJenisBarang] == 'Ya' ? true : false
@@ -76,6 +76,7 @@ workbook.xlsx.readFile(excelFilePath)
         }
       }
     });
+    console.log(json)
   })
   .catch((error) => {
     console.error('Error reading Excel file:', error);
