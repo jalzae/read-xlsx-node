@@ -104,11 +104,27 @@ workbook.xlsx.readFile(excelFilePath)
           const indexHargaJualSatuan = headerBarang.findIndex(e => e === 'Harga Jual Satuan')
           const indexHargaPokok = headerBarang.findIndex(e => e === 'Harga Pokok/Standart')
           const indexHargaJualMinimum = headerBarang.findIndex(e => e === 'Harga Jual Minimum')
+          const indexHargaJualMaksimum = headerBarang.findIndex(e => e === 'Harga Jual Maksimum')
           const indexBarcode = headerBarang.findIndex(e => e === 'Barcode')
           const indexKodeSKU = headerBarang.findIndex(e => e === 'Kode SKU')
+          
           bodyBarang.forEach((e) => {
             json.barang.push({
               nama_barang: e[indexNamaBarang],
+              jenis_barang: e[indexJenisBarang],
+              mode_pengadaan: e[indexModePengadaan],
+              satuan_terkecil: e[indexSatuanTerkecil],
+              satuan: e[indexSatuanLain],
+              barang_dijual: e[indexBarangDijual],
+              tipe_barang: e[indexTipeBarang],
+              memiliki_varian: e[indexMemilikiVarian],
+              varian_sku: e[indexVarianSKU],
+              harga_jual_satuan: e[indexHargaJualSatuan],
+              harga_pokok: e[indexHargaPokok],
+              harga_jual_minimum: e[indexHargaJualMinimum],
+              harga_jual_maksimum: e[indexHargaJualMaksimum],
+              barcode: e[indexBarcode],
+              kode_sku: e[indexKodeSKU],
             })
           })
         }
